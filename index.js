@@ -19,47 +19,62 @@ const playerSelection = () => {
 }
 
 const gameResults = (computerPlay, playerSelection) => {
-    let winner = " ";
+    let winner = 0;
     if(computerPlay.toLowerCase() === "rock"){
         if(playerSelection.toLowerCase() === "paper"){
-            winner = "Paper beats Rock! You Win!";
+           console.log("Paper beats Rock! You Win!");
+           winner++;
+
         }
         else if(playerSelection.toLowerCase() === "rock"){
-            winner = "Rock Ties Rock! No Winner!";
-        }
+            console.log("Rock Ties Rock! No Winner!");
+        } 
         else{
-            winner = "Rock beats Scissors! You Lose!";
+             console.log("Rock beats Scissors! You Lose!");
         }
     }
     else if(computerPlay.toLowerCase() === "scissors") {
         if(playerSelection.toLowerCase() === "paper"){
-            winner = "Scissors beats Paper! You Lose!";
+             console.log("Scissors beats Paper! You Lose!");
         }
         else if(playerSelection.toLowerCase() === "rock"){
-            winner = "Rock beats Scissors! You Win!";
+             console.log("Rock beats Scissors! You Win!");
+             winner++;
         }
         else{
-            winner = "Scissors ties Scissors! No Winner!";
+             console.log("Scissors ties Scissors! No Winner!");
         }
     }
     else{
         if(playerSelection.toLowerCase() === "scissors"){
-            winner = "Scissors beats Paper! You Win!";
+             console.log("Scissors beats Paper! You Win!");
+             winner++;
         }
         else if(playerSelection.toLowerCase() === "rock"){
-            winner = "Paper beats Rock! You Lose!";
+             console.log("Paper beats Rock! You Lose!");
         }
         else{
-            winner = "Paper ties Paper! No Winner!";
+             console.log("Paper ties Paper! No Winner!");
         }
     }
     return winner;
 }
 
-
-
-while(true){
-    const comp = computerPlay();
-    const player = playerSelection();
-    console.log(gameResults(comp,player));
+const game = () => {
+    let compWin = 0;
+    let playerWin = 0;
+    for(let i = 0; i < 5; i++){
+        const player = playerSelection();
+        const comp = computerPlay();
+        if(gameResults(comp,player) === 0){
+            compWin++;
+        }
+        else {
+            playerWin++;
+        }
+    }
+    console.log(playerWin > compWin ? "Player Wins" : "Computer Wins");
 }
+
+
+game();
