@@ -2,6 +2,11 @@ body {
     box-sizing: border-box;
 }
 
+.title {
+    text-align: center;
+    font-size: 56px;
+}
+
 .btn-container {
     display: flex;
     justify-content: center;
@@ -11,9 +16,10 @@ body {
 
 .btn {
     padding: 20px 30px;
-    font-size: 10px;
+    font-size: 20px;
     font-weight: bold;
     min-width: 150px;
+    border-radius: 4px;
 }
 
 .results {
