@@ -1,3 +1,20 @@
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+const result = document.querySelector('.results');
+
+ rock.addEventListener('click', () => {
+     playerSelection('Rock');
+ });
+
+ paper.addEventListener('click', () => {
+    playerSelection('Paper');
+ });
+
+ scissors.addEventListener('click', () => {
+    playerSelection('Scissors');
+ });
+
 const computerPlay = () => {
     let computerPick = " ";
     const randomPick = Math.floor((Math.random() * 3) + 1);
@@ -13,9 +30,9 @@ const computerPlay = () => {
     return computerPick;
 }
 
-const playerSelection = () => {
-    const playerChoice = prompt("Please choose either Rock, Paper, or Scissors.");
-    return playerChoice;
+const playerSelection = (selection) => {
+    result.textContent = "Results: " + selection;
+    return selection;
 }
 
 const gameResults = (computerPlay, playerSelection) => {
@@ -60,21 +77,3 @@ const gameResults = (computerPlay, playerSelection) => {
     return winner;
 }
 
-const game = () => {
-    let compWin = 0;
-    let playerWin = 0;
-    for(let i = 0; i < 5; i++){
-        const player = playerSelection();
-        const comp = computerPlay();
-        if(gameResults(comp,player) === 0){
-            compWin++;
-        }
-        else {
-            playerWin++;
-        }
-    }
-    console.log(playerWin > compWin ? "Player Wins" : "Computer Wins");
-}
-
-
-game();
