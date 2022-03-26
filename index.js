@@ -13,7 +13,7 @@ result.textContent = "Press a button to begin!";
  rock.addEventListener('click', () => {
     let player = playerSelection('Rock');
     let comp = computerPlay();
-    let winner = gameResults(comp, player);
+    gameResults(comp, player);
  });
 
  paper.addEventListener('click', () => {
