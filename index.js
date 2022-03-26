@@ -14,7 +14,6 @@ result.textContent = "Press a button to begin!";
     let player = playerSelection('Rock');
     let comp = computerPlay();
     let winner = gameResults(comp, player);
-    updateScore(winner);
  });
 
  paper.addEventListener('click', () => {
@@ -35,7 +34,7 @@ result.textContent = "Press a button to begin!";
          compCounter = 0;
          playerScores.textContent = 0;
          compScores.textContent = 0;
-        return playerCounter > compCounter ? result.textContent = "You Won The Series!" : result.textContent =  "You Lost The Series";
+        return player > comp ? result.textContent = "You won the first to five." : result.textContent = "You lost the first to five."
      }
  }
 
