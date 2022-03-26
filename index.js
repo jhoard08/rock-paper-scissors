@@ -2,12 +2,19 @@ const rock = document.querySelector('.rock');
 const paper = document.querySelector('.paper');
 const scissors = document.querySelector('.scissors');
 const result = document.querySelector('.results');
-const scores = document.querySelector('.score');
+const playerScores = document.querySelector('.playerScore');
+const compScores = document.querySelector('.compScore');
+
+let playerCounter = 0;
+let compCounter = 0;
+
+result.textContent = "Press a button to begin!";
 
  rock.addEventListener('click', () => {
     let player = playerSelection('Rock');
     let comp = computerPlay();
-    gameResults(comp, player);
+    let winner = gameResults(comp, player);
+    updateScore(winner);
  });
 
  paper.addEventListener('click', () => {
@@ -21,6 +28,16 @@ const scores = document.querySelector('.score');
     let comp = computerPlay();
     gameResults(comp, player);
  });
+
+ const updateScore = (comp, player) => {
+     if(comp === 5 || player === 5){
+         playerCounter = 0;
+         compCounter = 0;
+         playerScores.textContent = 0;
+         compScores.textContent = 0;
+        return playerCounter > compCounter ? result.textContent = "You Won The Series!" : result.textContent =  "You Lost The Series";
+     }
+ }
 
 const computerPlay = () => {
     let computerPick = " ";
@@ -43,27 +60,27 @@ const playerSelection = (selection) => {
 
 const gameResults = (computerPlay, playerSelection) => {
     let player = playerSelection.toLowerCase();
-    let winner = 0;
     if(computerPlay === "rock"){
         if(player === "paper"){
            result.textContent = "Paper beats Rock! You Win!";
-           winner++;
-
+           playerScores.textContent = ++playerCounter;
         }
         else if(player === "rock"){
             result.textContent = "Rock Ties Rock! No Winner!";
         } 
         else{
              result.textContent = "Rock beats Scissors! You Lose!";
+             compScores.textContent = ++compCounter;
         }
     }
     else if(computerPlay === "scissors") {
         if(player === "paper"){
              result.textContent = "Scissors beats Paper! You Lose!";
+             compScores.textContent = ++compCounter;
         }
         else if(player === "rock"){
              result.textContent = "Rock beats Scissors! You Win!";
-             winner++;
+             playerScores.textContent = ++playerCounter;
         }
         else{
              result.textContent = "Scissors ties Scissors! No Winner!";
@@ -72,22 +89,17 @@ const gameResults = (computerPlay, playerSelection) => {
     else{
         if(player === "scissors"){
              result.textContent = "Scissors beats Paper! You Win!";
-             winner++;
+             playerScores.textContent = ++playerCounter;
         }
         else if(player === "rock"){
              result.textContent = "Paper beats Rock! You Lose!";
+             compScores.textContent = ++compCounter;
         }
         else{
              result.textContent = "Paper ties Paper! No Winner!";
         }
     }
-    return winner;
-}
-
-const score = num => {
-    if(num > 0){
-        score.textContent = 1;
-    }
+    updateScore(compCounter, playerCounter);
 }
 
 
